@@ -1,7 +1,5 @@
-# Core training dependencies
-torch==2.4.0
-torchvision==0.19.0
-torchaudio==2.4.0
+# torch/torchvision/torchaudio are pre-installed in the base image
+# (pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime) — do NOT re-pin here.
 
 # YOLO26 / Ultralytics
 ultralytics>=8.4.0
