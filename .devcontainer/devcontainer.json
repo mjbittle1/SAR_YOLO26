@@ -1,34 +1,20 @@
 {
-    "name": "YOLO26 Training (CUDA 12.1)",
-
-    // Official NVIDIA PyTorch image — CUDA 12.1, cuDNN 9, Python 3.10
-    // Change cu121 → cu118 if your node runs CUDA 11.8
-    "image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
-
-    // GPU passthrough (works for Docker-backed Coder workspaces)
-    "runArgs": [
-        "--gpus=all",
-        "--shm-size=16g"
-    ],
-
-    // Useful VS Code extensions inside the workspace
+    "name": "YOLO26 Training - CUDA 12.1",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-python.pylance",
-                "ms-toolsai.jupyter",
-                "eamodio.gitlens"
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "/opt/conda/bin/python3",
+                "python.defaultInterpreterPath": "/opt/conda/bin/python",
                 "terminal.integrated.defaultProfile.linux": "bash"
             }
         }
-    },
-
-    // Forward W&B port if you run the local W&B server
-    "forwardPorts": [8080],
-
-    "remoteUser": "root"
+    }
 }

@@ -1,0 +1,13 @@
+path: ./dataset
+train: train/images
+val: valid/images
+test: test/images
+
+# Classes
+names:
+  0: Aircraft
+  1: Ship
+  2: Car
+  3: Bridge
+  4: Tank
+  5: Harbor

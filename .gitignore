@@ -1,0 +1,9 @@
+# Ignore PyTorch Model Weights (Prevents Github >100MB Push crash)
+*.pt
+
+# Ignore large YOLO training output folders
+wandb/
+
+# Python cache / VS Code
+__pycache__/
+.vscode/

@@ -1,13 +1,13 @@
-# torch/torchvision/torchaudio are pre-installed in the base image
-# (pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime) — do NOT re-pin here.
-
-# YOLO26 / Ultralytics
+# ─── YOLO26 / Ultralytics ───────────────────────────────────────────────────
+# torch/torchvision/torchaudio are PRE-INSTALLED in the base image
+# (pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime) — do NOT re-pin them here.
+# Re-installing them causes pip conflicts that will crash the container build.
 ultralytics>=8.4.0
 
-# Experiment tracking
+# ─── Experiment tracking ────────────────────────────────────────────────────
 wandb>=0.17.0
 
-# General utilities
+# ─── General utilities ──────────────────────────────────────────────────────
 numpy
 opencv-python-headless
 pillow
