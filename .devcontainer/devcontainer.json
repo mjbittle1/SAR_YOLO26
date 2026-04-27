@@ -11,9 +11,6 @@
         "--shm-size=16g"
     ],
 
-    // Install Python dependencies after the container starts
-    "postCreateCommand": "bash .devcontainer/setup.sh",
-
     // Useful VS Code extensions inside the workspace
     "customizations": {
         "vscode": {
