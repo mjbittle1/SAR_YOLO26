@@ -4,6 +4,7 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
+    "postStartCommand": "ldconfig 2>/dev/null || true",
     "customizations": {
         "vscode": {
             "extensions": [
