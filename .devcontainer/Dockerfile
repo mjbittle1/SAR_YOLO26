@@ -1,9 +1,11 @@
 FROM pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime
 
 # Install system libraries needed by OpenCV and other packages
+# Added: wget (required for downloads)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
+    wget \
     libgl1-mesa-glx \
     libglib2.0-0 \
     libsm6 \
@@ -38,4 +40,4 @@ RUN pip install \
     filelock \
     typing_extensions
 
-WORKDIR /workspace
+WORKDIR /workspaces/SAR_YOLO26

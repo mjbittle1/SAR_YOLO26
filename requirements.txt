@@ -1,3 +1,0 @@
-ultralytics>=8.2.0
-wandb
-tqdm

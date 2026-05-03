@@ -4,7 +4,33 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
-    "postStartCommand": "ldconfig 2>/dev/null || true",
+    
+    // Run after container is created (one-time)
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    
+    // Run every time container starts (including after restart)
+    "postStartCommand": "bash .devcontainer/startup.sh",
+    
+    // Mount tmpfs for /dev/shm (1TB for large batch training)
+    "mounts": [
+        "type=tmpfs,target=/dev/shm,tmpfs-size=1099511627776"
+    ],
+    
+    // Run as privileged to allow mount operations
+    "runArgs": [
+        "--privileged",
+        "--gpus=all",
+        "--ipc=host",
+        "--shm-size=1024g"
+    ],
+    
+    // Environment variables (including WandB API key)
+    "containerEnv": {
+        "WANDB_API_KEY": "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",
+        "CUDA_VISIBLE_DEVICES": "0,1,2,3,4,5,6,7",
+        "PYTHONUNBUFFERED": "1"
+    },
+    
     "customizations": {
         "vscode": {
             "extensions": [
@@ -17,5 +43,8 @@
                 "terminal.integrated.defaultProfile.linux": "bash"
             }
         }
-    }
+    },
+    
+    // Set workspace folder to your actual path
+    "workspaceFolder": "/workspaces/SAR_YOLO26"
 }
