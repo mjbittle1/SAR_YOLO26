@@ -1,7 +1,6 @@
 FROM pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime
 
 # Install system libraries needed by OpenCV and other packages
-# Added: wget (required for downloads)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
@@ -13,15 +12,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxrender-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip (conda pip is fine, just make sure it's current)
+# Upgrade pip
 RUN pip install --upgrade pip
 
-# Install project dependencies.
-# torch/torchvision/torchaudio are already in the base image — do NOT re-install.
-# Install ultralytics without its torch dependency to avoid pip conflicts.
+# Install ultralytics without torch dependency
 RUN pip install --no-deps ultralytics>=8.4.0
 
-# Install the remaining ultralytics runtime deps (excluding torch)
+# Install remaining dependencies
 RUN pip install \
     wandb>=0.17.0 \
     numpy \

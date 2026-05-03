@@ -5,18 +5,11 @@
         "context": ".."
     },
     
-    "mounts": [
-        "source=/dev/shm,target=/dev/shm,type=bind,consistency=cached"
-    ],
-    
     "containerEnv": {
-        "WANDB_API_KEY": "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",
-        "CUDA_VISIBLE_DEVICES": "0,1,2,3,4,5,6,7",
-        "PYTHONUNBUFFERED": "1"
+        "WANDB_API_KEY": "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"
     },
     
-    "postCreateCommand": "bash .devcontainer/setup.sh",
-    "postStartCommand": "bash .devcontainer/startup.sh",
+    "postStartCommand": "ldconfig 2>/dev/null || true",
     
     "customizations": {
         "vscode": {
@@ -30,7 +23,5 @@
                 "terminal.integrated.defaultProfile.linux": "bash"
             }
         }
-    },
-    
-    "workspaceFolder": "/workspaces/SAR_YOLO26"
+    }
 }
