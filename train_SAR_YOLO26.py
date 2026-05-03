@@ -77,7 +77,8 @@ def get_sar_optimized_config(
     patience,
     optimizer,
     lr0,
-    warmup_epochs
+    warmup_epochs,
+    cache="ram"
 ):
     """
     Returns SAR-optimized training configuration.
@@ -109,7 +110,7 @@ def get_sar_optimized_config(
         "device": device,
         "patience": patience,
         "workers": 8,
-        "cache": False,  # Set to True if you have enough RAM (200GB+)
+        "cache": cache if cache != "False" else False,  # RAM caching for speed
         "exist_ok": True,
         "pretrained": True,
         "verbose": True,
@@ -285,7 +286,8 @@ def train_model(
         patience=patience,
         optimizer=optimizer,
         lr0=lr0,
-        warmup_epochs=warmup_epochs
+        warmup_epochs=warmup_epochs,
+        cache="ram"  # Enable RAM caching by default
     )
     
     # Add resume flag if needed
@@ -414,6 +416,14 @@ def main():
         type=float,
         default=3.0,
         help="Warmup epochs (default: 3.0 - well-documented best practice)"
+    )
+    
+    parser.add_argument(
+        "--cache",
+        type=str,
+        default="ram",
+        choices=["ram", "disk", "False"],
+        help="Cache images for faster training: 'ram' (fastest, needs ~80GB), 'disk' (medium), 'False' (slowest)"
     )
     
     parser.add_argument(
